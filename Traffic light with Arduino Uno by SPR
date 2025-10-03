@@ -1,0 +1,58 @@
+//Created by Barbu Vulc.
+//LCD I2C library:
+#include <LiquidCrystal_I2C.h>
+//LCD I2C address 0x27, 16 column and 2 rows!
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup(){
+  //Initialize the LCD and the LEDs:
+  lcd.init();
+  lcd.backlight();
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+void loop(){
+  //Red LED
+  lcd.setCursor(5, 0); //Column number 4 & row number 1...
+  //To avoid residual writing on LCD:
+  lcd.println("STOP!");
+  digitalWrite(2, HIGH);
+  delay(11000);
+  digitalWrite(2, LOW);
+  lcd.clear();
+  
+  //Yellow LED
+  lcd.setCursor(1, 0);
+  lcd.println("Prepare to go!");
+  digitalWrite(3, HIGH);
+  delay(1000);
+  digitalWrite(3, LOW);
+  lcd.clear();
+  
+  //Green LED
+  lcd.setCursor(6, 0);
+  //To avoid residual writing on LCD:
+  lcd.println("GO!");
+  digitalWrite(4, HIGH);
+  delay(7000);
+  digitalWrite(4, LOW);
+  delay(500);
+  digitalWrite(4, HIGH);
+  delay(500);
+  digitalWrite(4, LOW);
+  delay(500);
+  digitalWrite(4, HIGH);
+  delay(500);
+  digitalWrite(4, LOW);
+  lcd.clear();
+  
+  //Yellow LED
+  lcd.setCursor(0, 0);
+  lcd.println("Prepare to stop!");
+  digitalWrite(3, HIGH);
+  delay(1000);
+  digitalWrite(3, LOW);
+  lcd.clear();
+}
